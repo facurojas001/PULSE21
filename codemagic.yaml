@@ -10,7 +10,7 @@ workflows:
         script: |
           set -o pipefail
           xcodebuild \
-            -project "$CM_BUILD_DIR/PULSE21.xcodeproj" \
+          -project "$CM_BUILD_DIR/PULSE21/PULSE21/PULSE21.xcodeproj" \
             -scheme "PULSE21" \
             -configuration Debug \
             -destination 'generic/platform=iOS' \
