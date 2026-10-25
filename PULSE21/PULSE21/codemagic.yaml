@@ -1,0 +1,23 @@
+workflows:
+  pulse21-ios-unsigned:
+    name: PULSE 21 - iOS (compilación sin firma)
+    max_build_duration: 60
+    instance_type: mac_mini_m2
+    environment:
+      xcode: latest
+    scripts:
+      - name: Compilar PULSE21 para iPhone sin firma
+        script: |
+          set -o pipefail
+          xcodebuild \
+            -project "$CM_BUILD_DIR/PULSE21.xcodeproj" \
+            -scheme "PULSE21" \
+            -configuration Debug \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath "$CM_BUILD_DIR/build/DerivedData" \
+            CODE_SIGNING_ALLOWED=NO \
+            build | tee "$CM_BUILD_DIR/xcodebuild.log"
+    artifacts:
+      - build/DerivedData/Build/Products/Debug-iphoneos/*.app
+      - xcodebuild.log
+      - /tmp/xcodebuild_logs/*.log
