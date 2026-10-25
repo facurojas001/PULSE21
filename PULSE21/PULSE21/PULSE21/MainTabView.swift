@@ -5,7 +5,7 @@ struct MainTabView: View {
     var body: some View {
         TabView(selection: $selection) {
             TodayView().tabItem { Label("Today", systemImage: PulseTab.today.symbol) }.tag(PulseTab.today)
-            StrainView().tabItem { Label("Strain", systemImage: PulseTab.strain.symbol) }.tag(PulseTab.strain)
+            StrainView(health: health).tabItem { Label("Strain", systemImage: PulseTab.strain.symbol) }.tag(PulseTab.strain)
             SleepView().tabItem { Label("Sleep", systemImage: PulseTab.sleep.symbol) }.tag(PulseTab.sleep)
             SettingsView().tabItem { Label("Settings", systemImage: PulseTab.settings.symbol) }.tag(PulseTab.settings)
         }.tint(.pulseLime).preferredColorScheme(.dark)
