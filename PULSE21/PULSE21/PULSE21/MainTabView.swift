@@ -101,9 +101,11 @@ private struct HomeView: View {
                         .font(.subheadline)
                         .foregroundStyle(Color.pulseMuted)
 
-                    Button {
-                        health.refresh()
-                    } label: {
+                 Button {
+    Task {
+        await health.refresh()
+    }
+} label: {
                         Label("Actualizar datos", systemImage: "arrow.clockwise")
                             .font(.headline)
                             .frame(maxWidth: .infinity)
